@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Kart</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.js"></script>
+    <script src="main.js"></script>
+    <link rel="stylesheet" href="Styles.css">
+    
+</head>
+<body ng-app="AppModule" ng-controller="HomeController">
+   
+ <header>
+     
+
+     <div class="header-wrapper">
+     <img src="images/shopping-cart.jpg" class="HeaderLogo" alt="header logo image"/><h1 class="HeaderText">SHOPPING KART 2.0</h1>
+    </div>
+    <div class="carousel">
+        <nav class="navbar navbar-inverse ">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <a class="navbar-brand" href="#">Username: {{current_user}}</a>
+                
+              </div>
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#Grocery">Grocery</a></li>
+                <li><a href="#Gadgets">Gadgets</a></li>
+                <li><a href="#Clothing">Clothing</a></li>
+              </ul>
+              <form class="navbar-form navbar-right" action="/action_page.php">
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Search" name="search">
+                  <div class="input-group-btn">
+                    <button class="btn btn-default" type="submit">
+                      <i class="glyphicon glyphicon-search"></i>
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </nav>
+    </div>
+
+ </header>
+<main ng-if="page=='login'">
+     <p ng-if="login_emessage!=''">{{login_emessage}}</p>
+  <div class="container">
+    <h2>Login Page</h2>
+    <form>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" id="lemail" placeholder="Enter email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" class="form-control" id="lpwd" placeholder="Enter password" name="pwd" required>
+      </div>
+      <button  class="btn btn-success" ng-click="login_verify()">Login</button>
+      <button type="submit" class="btn btn-info" ng-click="page_reroute('signup')">Register user</button>
+    </form>
+  </div>
+</main>
+
+
+<main ng-if="page=='signup'">
+  <p ng-if="register_emessage!=''">{{register_emessage}}</p>
+  <div class="container">
+    <h2>Registration Page</h2>
+    <form>
+      <div class="form-group">
+        <label for="uname">UserName:</label>
+        <input type="text" class="form-control" id="rname" placeholder="Enter UserName" name="rname" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" class="form-control" id="remail" placeholder="Enter email" name="remail" required>
+      </div>
+      <div class="form-group">
+        <label for="pwd">Password:</label>
+        <input type="password" class="form-control" id="rpwd" placeholder="Enter password" name="rpwd" required>
+      </div>
+      <button type="submit" class="btn btn-default" ng-click="register_verify()">Register</button>
+      <button type="submit" class="btn btn-success" ng-click="page_reroute('login')">Loginpage</button>
+    </form>
+  </div>
+ 
+</main>
+
+ <main ng-if="page=='homepage'">
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+          <li data-target="#myCarousel" data-slide-to="1"></li>
+          <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+    
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+          <div class="item active">
+            <img src="images/vegetables.jpg" alt="vegetables" class="carousel-img">
+          </div>
+    
+          <div class="item">
+            <img src="images/gadgets.jpg" alt="gadgets" class="carousel-img">
+          </div>
+        
+          <div class="item">
+            <img src="images/clothes.jpg" alt="clothes" class="carousel-img">
+          </div>
+        </div>
+    
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+
+      <div class="body">
+   
+        <div class="vegetables-section " id="Grocery">
+              <h2>Vegetables section </h2>
+              
+              
+                <div class="product-card" ng-repeat="vegetable in vegetables">
+                    <img src="{{vegetable.imgurl}}" alt="Avatar" style="width:345px;height:500px;">
+                    <div class="container">
+                      <h4><b>{{vegetable.name}}</b></h4> 
+                      <b>{{vegetable.price}}</b> 
+                      &nbsp;<span>{{vegetable.unit}}</span>
+                      <div><button class="add_button" ng-click=add_to_cart_handler(vegetable)>Add</button>
+                        <button class="Viewbutton" ng-click=add_to_modal_handler(vegetable)>View</button>
+                    </div>
+                    </div>
+                
+          
+                </div>
+        </div>
+         
+
+        <div class="gadgets-section" id="Gadgets">
+            <h2>Gadgets section</h2>
+                <div class="product-card" ng-repeat="gadget in gadgets">
+                    <img src="{{gadget.imgurl}}" alt="Avatar" style="width:345px;height:500px;">
+                    <div class="container">
+                    <h4><b>{{gadget.name}}</b></h4> 
+                    <b>{{gadget.price}}</b> 
+                    &nbsp;<span>{{gadget.unit}}</span>
+                    <div><button class="add_button" ng-click=add_to_cart_handler(gadget)>Add</button>
+                        <button class="Viewbutton" ng-click=add_to_modal_handler(gadget)>View</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="clothes-section" id="Clothing">
+             <h2>Clothes section</h2>
+
+             <div class="product-card" ng-repeat="shoe in clothes">
+                <img src="{{shoe.imgurl}}" alt="Avatar" style="width:345px;height:500px;">
+                <div class="container">
+                <h4><b>{{shoe.name}}</b></h4> 
+                <b>{{shoe.price}}</b> 
+                &nbsp;<span>{{shoe.unit}}</span>
+                <div><button class="add_button" ng-click=add_to_cart_handler(shoe)>Add</button>
+                    <button class="Viewbutton" ng-click=add_to_modal_handler(shoe) >View</button></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cart-section" >
+            <h2>Cart Section</h2>
+            <table class="cart-table">
+                <tr class="cart-row">
+                    <th class="cart-item">SLno</th>
+                    <th class="cart-item">Name of the item</th>
+                    <th class="cart-item">quantity</th>
+                    <th class="cart-item">price</th>
+                </tr>
+                <tr class="cart-row" ng-repeat="cart in temp_cart">
+                    <td class="cart-item">{{$index + 1}}</td>
+                    <td class="cart-item">{{cart.name}}</td>
+                    <td class="cart-item">{{cart.quantity}}</td>
+                    <td class="cart-item">{{cart.price}}</td>
+                </tr>
+                <tr>
+                <td></td>
+                <td></td>
+                <td>Total_Price</td>
+                <td>{{total_cost}}</td>
+            </tr>
+
+            </table>
+
+            
+       </div>
+
+        </div>
+
+      </div>
+
+ </main>
+
+
+  
+
+  <div id="id01" class="w3-modal">
+    <div class="w3-modal-content mymodal-1">
+      <div class="w3-container">
+        <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+         <h3>Product View Page</h3>
+       
+           <img src="{{modal_object.imgurl}}" alt="modal_object_to_display" class="modal-image"/>
+          <p><span>Product name:</span>&nbsp;{{modal_object.name}}</p>
+          <p><span>Product price:</span>&nbsp;{{modal_object.price}}</p>
+          <p><span>price unit:</span>&nbsp;{{modal_object.unit}}</p>
+      
+      </div>
+    </div>
+  </div>
+
+
+ 
+
+ <footer>
+    <div class="footer">
+        <p> Copyrights and trademark registering by me in 2022</p>
+      </div>
+ </footer>
+    
+</body>
+</html>

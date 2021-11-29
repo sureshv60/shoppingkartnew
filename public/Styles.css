@@ -1,0 +1,114 @@
+
+.header-wrapper{
+    background-color:yellow;
+}
+
+
+.HeaderLogo{
+    width: 300px;
+    height:200px;
+    position:inline-block;
+    
+    
+}
+
+.HeaderText{
+    display:inline-block;
+    margin:0 auto;
+    text-align:center;
+    
+}
+
+.carousel{
+    
+    display:block;
+}
+.carousel-img{
+    width:100% !important;
+    height:400px !important;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: black;
+    color: white;
+    text-align: center;
+  }
+
+  .product-card{
+      width:350px;
+      display:inline-block;
+      height:700px;
+  }
+
+  .product-card:hover{
+    border:2px solid blue;
+}
+
+.add_button{
+    width:80px;
+    height:40px;
+    background-color: green;
+    color:azure;
+    font-weight: 100;
+    border-radius:10px;
+}
+
+.cart-section{
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    width:100%;
+    min-height: 400px;
+}
+table{
+    width:auto;
+    border: 1px solid black;
+}
+
+.cart-table {
+    display:block;
+    width:auto;
+    border:1px solid black;
+}
+
+.cart-row{
+    height:30px;
+    text-align:center;
+}
+
+.cart-item{
+    width:25%;
+}
+
+main{
+    margin:0 auto;
+    align-items: center;
+}
+
+.Viewbutton{
+    width:80px;
+    height:40px;
+    background-color: yellow;
+    color:black;
+    font-weight: 100;
+    border-radius:10px;
+}
+
+.modal-image{
+
+align-items: center;
+width: 350px;
+height:500px;
+border: 5px solid black;
+font-size: 10px;
+font-weight: strong;
+}
+
+.mymodal-1{
+    width:800px;
+    height:800px;
+}
